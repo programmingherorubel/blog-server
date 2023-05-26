@@ -6,9 +6,17 @@ const { MongoClient, ServerApiVersion } = require('mongodb');
 const ObjectId = require('mongodb').ObjectId
 const port =process.env.PORT ||5000
 
-
+// DB_USER=aysha
+// DB_PASS=qPwNXjMslezCbseE
 dotenv.config()
-app.use(cors())
+// app.use(cors())
+const corsConfig = {
+    origin: '',
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE']
+}
+app.use(cors(corsConfig))
+app.options("", cors(corsConfig))
 app.use(express.json())
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.i8wrn.mongodb.net/?retryWrites=true&w=majority`;
@@ -163,7 +171,7 @@ app.get('/', (req, res) => {
   })
   
   app.listen(port, () => {
-    console.log('lisining server ')
+    console.log(`lisining server number${port}`)
   })
 
 //   aysha
